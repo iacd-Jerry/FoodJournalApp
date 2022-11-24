@@ -14,13 +14,19 @@ class EntryViewController: UIViewController {
         
     }
 
+    
     override func viewDidAppear(_ animated: Bool) {
-        //NB-- write code to check if the user is signed in or not using firebase
-   
-       
-        //sleep(2)
-        performSegue(withIdentifier: "login screen", sender: nil)
+        super.viewDidAppear(animated)
+        let loggedIn = UserDefaults.standard.bool(forKey: "logged_in")
+        
+        if !loggedIn{
+            let vc = LoginViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: false)
+            print("Here presenting")
+        }
+        
     }
-
 }
 
