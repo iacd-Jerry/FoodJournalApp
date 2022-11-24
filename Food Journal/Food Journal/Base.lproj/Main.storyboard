@@ -51,6 +51,9 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="30"/>
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="kMe-N0-V7B" eventType="touchUpInside" id="G3f-X6-wiJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YoQ-nl-OPs"/>
@@ -93,6 +96,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emailAdd" destination="S5j-FP-iWo" id="vcs-dr-w9s"/>
+                        <outlet property="password" destination="U2v-dF-xHP" id="Umr-tW-Ewv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byR-4i-jhY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -148,6 +155,9 @@
                                         <rect key="frame" x="168.5" y="176" width="77.5" height="34"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Register"/>
+                                        <connections>
+                                            <action selector="registerButtonTapped:" destination="vTJ-JO-9Ze" eventType="touchUpInside" id="v4i-jE-htZ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -179,6 +189,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Fmx-m2-v6y"/>
+                    <connections>
+                        <outlet property="emailAdd" destination="Tmf-wu-cnY" id="jOE-4X-e1u"/>
+                        <outlet property="firstName" destination="f7j-wr-rcC" id="UvE-w4-dmj"/>
+                        <outlet property="lastName" destination="rhd-uJ-ONb" id="Gih-UR-klQ"/>
+                        <outlet property="password" destination="KPs-bT-uIP" id="0ne-8N-4cw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVf-I8-6fV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -200,10 +216,10 @@
             </objects>
             <point key="canvasLocation" x="1012" y="508"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="ty5-fJ-gLP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zQT-hn-mB8" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zQT-hn-mB8" customClass="NavigationViewController" customModule="Food_Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="owx-CV-mb0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

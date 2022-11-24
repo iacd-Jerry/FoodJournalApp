@@ -6,24 +6,34 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet var password: UITextField!
+    @IBOutlet var emailAdd: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        let auth = FirebaseAuth.Auth.auth()
+        
+        guard let email = emailAdd.text, !email.isEmpty , let pass = password.text, !pass.isEmpty
+                else{
+            self.alertUserOfError()
+            return
+        }
+        
+        auth.signIn(withEmail: email, password: password, completion: <#T##((AuthDataResult?, Error?) -> Void)?##((AuthDataResult?, Error?) -> Void)?##(AuthDataResult?, Error?) -> Void#>)
     }
-    */
-
-}
+    
+    
+    func alertUserOfError(){
+        print("An error occured while trying to obtain registration infromation")
+    }
+    
+}//End of body

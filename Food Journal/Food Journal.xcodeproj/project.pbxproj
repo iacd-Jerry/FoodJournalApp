@@ -17,13 +17,13 @@
 		90470919292F893A00027EE5 /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90470918292F893A00027EE5 /* DashBoardViewController.swift */; };
 		9047091B292F8AF700027EE5 /* extensions and methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047091A292F8AF700027EE5 /* extensions and methods.swift */; };
 		9047091D292F9B6B00027EE5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047091C292F9B6B00027EE5 /* RegisterViewController.swift */; };
+		909B1092292FCFD7005D3145 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 909B1091292FCFD7005D3145 /* GoogleService-Info.plist */; };
 		90ABDFE5292FC38B001CFC7E /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABDFE4292FC38B001CFC7E /* NavigationViewController.swift */; };
 		90ABDFE8292FCC8A001CFC7E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 90ABDFE7292FCC8A001CFC7E /* FirebaseAnalytics */; };
 		90ABDFEA292FCC8A001CFC7E /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 90ABDFE9292FCC8A001CFC7E /* FirebaseAnalyticsSwift */; };
 		90ABDFEC292FCC8A001CFC7E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 90ABDFEB292FCC8A001CFC7E /* FirebaseAuth */; };
 		90ABDFEE292FCC8A001CFC7E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 90ABDFED292FCC8A001CFC7E /* FirebaseDatabase */; };
 		90ABDFF0292FCC8A001CFC7E /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 90ABDFEF292FCC8A001CFC7E /* FirebaseDatabaseSwift */; };
-		90ABDFF2292FCD66001CFC7E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90ABDFF1292FCD66001CFC7E /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +39,8 @@
 		90470918292F893A00027EE5 /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
 		9047091A292F8AF700027EE5 /* extensions and methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extensions and methods.swift"; sourceTree = "<group>"; };
 		9047091C292F9B6B00027EE5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		909B1091292FCFD7005D3145 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90ABDFE4292FC38B001CFC7E /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
-		90ABDFF1292FCD66001CFC7E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../../../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +78,7 @@
 		90470901292F74E300027EE5 /* Food Journal */ = {
 			isa = PBXGroup;
 			children = (
-				90ABDFF1292FCD66001CFC7E /* GoogleService-Info.plist */,
+				909B1091292FCFD7005D3145 /* GoogleService-Info.plist */,
 				9047091A292F8AF700027EE5 /* extensions and methods.swift */,
 				90470902292F74E300027EE5 /* AppDelegate.swift */,
 				90470904292F74E300027EE5 /* SceneDelegate.swift */,
@@ -164,7 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9047090F292F74E400027EE5 /* LaunchScreen.storyboard in Resources */,
-				90ABDFF2292FCD66001CFC7E /* GoogleService-Info.plist in Resources */,
+				909B1092292FCFD7005D3145 /* GoogleService-Info.plist in Resources */,
 				9047090C292F74E400027EE5 /* Assets.xcassets in Resources */,
 				9047090A292F74E300027EE5 /* Main.storyboard in Resources */,
 			);
