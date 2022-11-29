@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--Login-->
         <scene sceneID="buX-YE-laf">
             <objects>
-                <viewController id="kMe-N0-V7B" customClass="LoginViewController" customModule="Food_Journal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Login" id="kMe-N0-V7B" customClass="LoginViewController" customModule="Food_Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="546-S3-p5f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,7 +107,7 @@
             </objects>
             <point key="canvasLocation" x="1012" y="-384"/>
         </scene>
-        <!--Register View Controller-->
+        <!--User Registration-->
         <scene sceneID="bTg-oa-m0t">
             <objects>
                 <viewController id="vTJ-JO-9Ze" customClass="RegisterViewController" customModule="Food_Journal" customModuleProvider="target" sceneMemberID="viewController">
@@ -191,7 +191,9 @@
                             <constraint firstItem="mM2-dU-7o4" firstAttribute="trailing" secondItem="Frk-yS-DM7" secondAttribute="trailing" id="wmD-7h-y7g"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Fmx-m2-v6y"/>
+                    <navigationItem key="navigationItem" title="User Registration" id="Fmx-m2-v6y">
+                        <barButtonItem key="backBarButtonItem" title="Logout" id="8iN-5C-1qx"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailAdd" destination="Tmf-wu-cnY" id="jOE-4X-e1u"/>
                         <outlet property="firstName" destination="f7j-wr-rcC" id="UvE-w4-dmj"/>
@@ -214,11 +216,32 @@
                         <viewLayoutGuide key="safeArea" id="mAk-jN-RZv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BHA-Yr-rKR"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="BHA-Yr-rKR">
+                        <barButtonItem key="rightBarButtonItem" title="Upload image" id="XGO-Di-klf"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="ERI-bc-eVf" kind="show" id="MfG-C6-dOh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Zy-2C-uJU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1012" y="508"/>
+        </scene>
+        <!--Food Description-->
+        <scene sceneID="WJr-jJ-bkv">
+            <objects>
+                <viewController title="Food Description" id="ERI-bc-eVf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YKa-Ig-FMM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="HBr-YP-Shc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Food Description" id="dwe-QQ-H80"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zLz-9D-v6w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2343" y="508"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="ty5-fJ-gLP">

@@ -29,6 +29,7 @@ struct User{
 final class DBManager{
     
     let dbReference = Database.database().reference()
+    let dbStorageReferemce = Storage.storage().reference()
     
     func userIsFound(with email: String, completion: @escaping ((Bool) -> Void) ){
         var newEmail = email
@@ -51,6 +52,19 @@ final class DBManager{
         dbReference.child("Users").child(user.emailForChild).setValue(["firstName": user.firstName,
                                                                        "lastName": user.lastName
                                                                        ])
+        guard let imgData = user.profilePicture?.pngData() else {
+            print("Failed to convert image to png")
+            return
+        }
+        
+        dbStorageReferemce.child("UserProfilePictures").child(user.emailForChild).putData(imgData, metadata: nil) { _, error in
+            guard  error == nil else {
+                print("Something went wrong while trying to store image in storage")
+                return
+            }
+            
+            
+        }
         
     }
 }

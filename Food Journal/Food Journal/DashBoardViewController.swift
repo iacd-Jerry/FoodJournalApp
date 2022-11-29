@@ -8,14 +8,12 @@
 import UIKit
 
 class DashBoardViewController: UIViewController {
-
+   
+    @IBOutlet var tabBar: UINavigationItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-        // Do any additional setup after loading the view.
     }
-    
-
-    
 
 }

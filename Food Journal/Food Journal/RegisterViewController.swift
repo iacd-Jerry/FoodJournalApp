@@ -7,7 +7,6 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseDatabase
 
 class RegisterViewController: UIViewController {
     @IBOutlet var profilePicture: UIImageView!
@@ -89,6 +88,7 @@ class RegisterViewController: UIViewController {
                 //inserting information to database
                 
                 dbManager.Insert(User(firstName: fName, lastName: lName, emailAddress: email))
+                dbManager.Insert(User(firstName: fName, lastName: lName, emailAddress: email, profilePicture: self.profilePicture.image))
                 
                 self.navigationController?.popViewController(animated: true)
                             
