@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var emailAdd: UITextField!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad() 
 
         // Do any additional setup after loading the view.
     }
@@ -28,7 +28,19 @@ class LoginViewController: UIViewController {
             return
         }
         
-        auth.signIn(withEmail: email, password: password, completion: <#T##((AuthDataResult?, Error?) -> Void)?##((AuthDataResult?, Error?) -> Void)?##(AuthDataResult?, Error?) -> Void#>)
+        auth.signIn(withEmail: email, password: pass) { results, error in
+            guard let result = results , error == nil else
+            {
+                return
+            }
+            
+            //Stopped here.
+           // UserDefaults.standard.
+            
+            print("user signed in")
+            let vc = DashBoardViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     

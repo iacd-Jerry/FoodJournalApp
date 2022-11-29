@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class EntryViewController: UIViewController {
     
@@ -17,14 +18,20 @@ class EntryViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let loggedIn = UserDefaults.standard.bool(forKey: "logged_in")
+       
+        print("View appeared")
+        let auth = FirebaseAuth.Auth.auth()
         
-        if !loggedIn{
+        if  auth.currentUser == nil{
             let vc = LoginViewController()
             let nav = UINavigationController(rootViewController: vc)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: false)
-            print("Here presenting")
+            print("User is not signed in")
+        }
+        else
+        {
+                performSegue(withIdentifier: "dashboard", sender: nil)
         }
         
     }
