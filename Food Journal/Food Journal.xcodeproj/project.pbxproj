@@ -22,6 +22,8 @@
 		90470919292F893A00027EE5 /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90470918292F893A00027EE5 /* DashBoardViewController.swift */; };
 		9047091B292F8AF700027EE5 /* extensions and methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047091A292F8AF700027EE5 /* extensions and methods.swift */; };
 		9047091D292F9B6B00027EE5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9047091C292F9B6B00027EE5 /* RegisterViewController.swift */; };
+		905A802E29377FB700923996 /* FoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A802D29377FB700923996 /* FoodTableViewCell.swift */; };
+		905A80312937BA2A00923996 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 905A80302937BA2A00923996 /* FirebaseFirestore */; };
 		909B1092292FCFD7005D3145 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 909B1091292FCFD7005D3145 /* GoogleService-Info.plist */; };
 		90ABDFE5292FC38B001CFC7E /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ABDFE4292FC38B001CFC7E /* NavigationViewController.swift */; };
 		90CDA8D32936180C00A224EC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 90CDA8D22936180C00A224EC /* FirebaseFirestore */; };
@@ -41,6 +43,7 @@
 		90470918292F893A00027EE5 /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
 		9047091A292F8AF700027EE5 /* extensions and methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extensions and methods.swift"; sourceTree = "<group>"; };
 		9047091C292F9B6B00027EE5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		905A802D29377FB700923996 /* FoodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTableViewCell.swift; sourceTree = "<group>"; };
 		909B1091292FCFD7005D3145 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90ABDFE4292FC38B001CFC7E /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +58,7 @@
 				90047F722931F3670021C1D1 /* FirebaseAuth in Frameworks */,
 				90047F742931F3670021C1D1 /* FirebaseDatabase in Frameworks */,
 				90CDA8D52936180C00A224EC /* FirebaseStorage in Frameworks */,
+				905A80312937BA2A00923996 /* FirebaseFirestore in Frameworks */,
 				90047F6E2931F3670021C1D1 /* FirebaseAnalytics in Frameworks */,
 				90CDA8D32936180C00A224EC /* FirebaseFirestore in Frameworks */,
 			);
@@ -90,6 +94,7 @@
 				90470916292F889200027EE5 /* LoginViewController.swift */,
 				90470918292F893A00027EE5 /* DashBoardViewController.swift */,
 				90470908292F74E300027EE5 /* Main.storyboard */,
+				905A802D29377FB700923996 /* FoodTableViewCell.swift */,
 				90ABDFE4292FC38B001CFC7E /* NavigationViewController.swift */,
 				9047091C292F9B6B00027EE5 /* RegisterViewController.swift */,
 				9047090B292F74E400027EE5 /* Assets.xcassets */,
@@ -123,6 +128,7 @@
 				90047F752931F3670021C1D1 /* FirebaseDatabaseSwift */,
 				90CDA8D22936180C00A224EC /* FirebaseFirestore */,
 				90CDA8D42936180C00A224EC /* FirebaseStorage */,
+				905A80302937BA2A00923996 /* FirebaseFirestore */,
 			);
 			productName = "Food Journal";
 			productReference = 904708FF292F74E300027EE5 /* Food Journal.app */;
@@ -155,6 +161,7 @@
 			packageReferences = (
 				90047F6C2931F3670021C1D1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				90CDA8D12936180C00A224EC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				905A802F2937BA2A00923996 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 90470900292F74E300027EE5 /* Products */;
 			projectDirPath = "";
@@ -192,6 +199,7 @@
 				90470903292F74E300027EE5 /* AppDelegate.swift in Sources */,
 				9047091B292F8AF700027EE5 /* extensions and methods.swift in Sources */,
 				90470905292F74E300027EE5 /* SceneDelegate.swift in Sources */,
+				905A802E29377FB700923996 /* FoodTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +431,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		905A802F2937BA2A00923996 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		90CDA8D12936180C00A224EC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -458,6 +474,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 90047F6C2931F3670021C1D1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabaseSwift;
+		};
+		905A80302937BA2A00923996 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 90047F6C2931F3670021C1D1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		90CDA8D22936180C00A224EC /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -24,6 +24,7 @@ struct User{
             return newEmail
     }
     var profilePicture: UIImage?
+    var uploadedImages : [UIImage]?
 }
 
 final class DBManager{
@@ -62,9 +63,8 @@ final class DBManager{
                 print("Something went wrong while trying to store image in storage")
                 return
             }
-            
-            
+                        
         }
         
-    }
+    }//end of insert function
 }
