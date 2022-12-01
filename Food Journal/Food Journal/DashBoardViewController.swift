@@ -16,7 +16,7 @@ class DashBoardViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .link
+        //view.backgroundColor = .link
         navigationItem.hidesBackButton = true
         myVideos = loadVideos()
         
@@ -32,6 +32,12 @@ class DashBoardViewController: UIViewController{
         }
         return videoArr
     }
+    
+    
+    @IBAction func uploadButtonTapped(_ sender: UIBarButtonItem) {
+    
+    }
+    
 
 }
 
