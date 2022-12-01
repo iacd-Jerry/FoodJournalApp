@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
+import FirebaseFirestore
 
 class PictureUploadViewController: UIViewController {
     @IBOutlet var foodDescription: UITextField!
     @IBOutlet var foodTitle: UITextField!
     @IBOutlet var uploadPicture: UIImageView!
+    var currentUserEmail: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +26,8 @@ class PictureUploadViewController: UIViewController {
 
         let gest = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
         uploadPicture.addGestureRecognizer(gest)
-
+        
+        currentUserEmail = FirebaseAuth.Auth.auth().currentUser!.email!
 
     }
     
@@ -57,7 +63,20 @@ class PictureUploadViewController: UIViewController {
         }
     
     
- 
+    @IBAction func uploadButtonTapped(_ sender: UIButton) {
+        print("The currently logged in user is",currentUserEmail!)
+        
+        guard let image = uploadPicture.image?.pngData() , let description = foodDescription.text , let foodTitle = foodTitle.text else{
+            print("Failed to receive all information for uploading picture")
+            return
+        }//end of guard
+        
+        let dbStorage = FirebaseStorage.Storage.storage().reference()
+        dbStorage.child(<#T##path: String##String#>)
+        
+        
+    }//end of upload button tapped
+    
     
 }
 

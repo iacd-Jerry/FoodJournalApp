@@ -82,3 +82,13 @@ class Video{
     }
     
 }
+
+func createSafeEmail(with email: String) ->String{
+    
+        var newEmail = email
+            newEmail = newEmail.replacingOccurrences(of: ".", with: "_")
+            newEmail = newEmail.replacingOccurrences(of: "@", with: "_")
+            newEmail = newEmail.replacingOccurrences(of: "$", with: "_")
+            newEmail = newEmail.replacingOccurrences(of: "%", with: "_")
+            return newEmail
+}
