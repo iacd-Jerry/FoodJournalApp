@@ -8,9 +8,9 @@
 import UIKit
 
 class FoodTableViewCell: UITableViewCell {
-    @IBOutlet var foodImage: UIImageView!
-    @IBOutlet var foodDescription: UILabel!
-    @IBOutlet var foodTitle: UILabel!
+    @IBOutlet var foodImage: UIImageView?
+    @IBOutlet var foodDescription: UILabel?
+    @IBOutlet var foodTitle: UILabel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,7 +20,7 @@ class FoodTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+       
     }
     
 

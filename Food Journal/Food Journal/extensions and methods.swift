@@ -68,3 +68,15 @@ final class DBManager{
         
     }//end of insert function
 }
+
+
+class Video{
+    var img: UIImage
+    var title: String
+    
+    init(img: UIImage , title: String){
+        self.img = img
+        self.title = title
+    }
+    
+}

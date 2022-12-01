@@ -9,22 +9,9 @@ import UIKit
 import FirebaseAuth
 
 class NavigationViewController: UINavigationController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
- 
-        let auth = FirebaseAuth.Auth.auth()
-        
-        if  auth.currentUser != nil{
-            self.pushViewController(DashBoardViewController(), animated: false)
-            print("User signed in")
-        }
         
     }
 
