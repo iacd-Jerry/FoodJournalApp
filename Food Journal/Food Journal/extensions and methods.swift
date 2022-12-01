@@ -25,6 +25,7 @@ struct User{
     }
     var profilePicture: UIImage?
     var uploadedImages : [UIImage]?
+    var uploads: [String: String]?
 }
 
 final class DBManager{

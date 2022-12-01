@@ -28,7 +28,7 @@ class PictureUploadViewController: UIViewController {
         uploadPicture.addGestureRecognizer(gest)
         
         currentUserEmail = FirebaseAuth.Auth.auth().currentUser!.email!
-
+        
     }
     
     @objc private func didTapImage(){
@@ -64,15 +64,21 @@ class PictureUploadViewController: UIViewController {
     
     
     @IBAction func uploadButtonTapped(_ sender: UIButton) {
-        print("The currently logged in user is",currentUserEmail!)
         
-        guard let image = uploadPicture.image?.pngData() , let description = foodDescription.text , let foodTitle = foodTitle.text else{
+        guard let imageData = uploadPicture.image?.pngData() , let description = foodDescription.text , let foodTitle = foodTitle.text else{
             print("Failed to receive all information for uploading picture")
             return
         }//end of guard
         
-        let dbStorage = FirebaseStorage.Storage.storage().reference()
-        dbStorage.child(<#T##path: String##String#>)
+      //start here
+        FirebaseStorage.Storage.storage().reference().child("Images/").putData(imageData) { _, error in
+            guard error == nil else { return}
+        }
+        
+    //end here
+        
+        
+        
         
         
     }//end of upload button tapped
