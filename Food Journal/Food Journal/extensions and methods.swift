@@ -73,10 +73,12 @@ final class DBManager{
 class Video{
     var img: UIImage
     var title: String
-    
-    init(img: UIImage , title: String){
+    var foodDescription: String
+
+    init(img: UIImage, title: String , description : String){
         self.img = img
         self.title = title
+        self.foodDescription = description
     }
     
 }

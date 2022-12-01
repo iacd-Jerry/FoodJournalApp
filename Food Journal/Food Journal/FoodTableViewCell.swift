@@ -12,17 +12,11 @@ class FoodTableViewCell: UITableViewCell {
     @IBOutlet var foodDescription: UILabel?
     @IBOutlet var foodTitle: UILabel?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-       
-    }
     
-
+    func setProp(video: Video){
+        foodTitle!.text = video.title
+        foodDescription!.text = video.foodDescription
+        foodImage!.image = video.img
+    }
     
 }
