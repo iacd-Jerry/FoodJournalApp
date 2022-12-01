@@ -28,6 +28,12 @@ struct User{
     var uploads: [String: String]?
 }
 
+struct PictureInfo{
+    var urlString: String
+    var title: String
+    var descriptionee: String
+}
+
 final class DBManager{
     
     let dbReference = Database.database().reference()
@@ -67,7 +73,19 @@ final class DBManager{
                         
         }
         
-    }//end of insert function
+    }  //end of insert function
+    
+    
+    func record(pictureInfo: PictureInfo , emailAsChild: String, imgName: String){
+        print("This is the child name",imgName)
+        dbReference.child("UploadedPictureData").child(emailAsChild).child(imgName).setValue(
+                         [
+                        "UrlString": pictureInfo.urlString,
+                        "Title": pictureInfo.title,
+                        "Description": pictureInfo.descriptionee
+                            ])
+        
+    }  //end of insert function
 }
 
 

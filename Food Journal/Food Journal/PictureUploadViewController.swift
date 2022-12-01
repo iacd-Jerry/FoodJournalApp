@@ -16,6 +16,10 @@ class PictureUploadViewController: UIViewController {
     @IBOutlet var foodTitle: UITextField!
     @IBOutlet var uploadPicture: UIImageView!
     var currentUserEmail: String?
+    let dbmanager = DBManager()
+    var currentDate = Date()
+    var imageName = ""
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,16 +74,38 @@ class PictureUploadViewController: UIViewController {
             return
         }//end of guard
         
-      //start here
-        FirebaseStorage.Storage.storage().reference().child("Images/").putData(imageData) { _, error in
-            guard error == nil else { return}
+        let safeEmail = createSafeEmail(with: currentUserEmail!)
+        
+        //generating random name for the image to be uploaded...to get the date part, separater is -
+        self.imageName  =  self.currentDate.formatted()+"-"+String( Calendar.current.component(.second, from: self.currentDate))+".png"
+       
+        let dbStorage = FirebaseStorage.Storage.storage().reference().child("Uploaded Images/\(safeEmail)")
+        
+        dbStorage.child(imageName).putData(imageData) { _ , error in
+            print("Uploading image")
+            guard error == nil else {
+                print("Failed to upload image")
+                return
+            }// end of guard
+            
+            print("Trying to get URL For downloading")
+            
+            
+            dbStorage.child(self.imageName).downloadURL { url, error in
+                guard error == nil else { print("Error getting Url");  return }
+                let urlString = url?.absoluteString
+                print("Donwload URL: ",urlString!)
+                
+               let picInfo = PictureInfo(urlString: urlString!, title: foodTitle, descriptionee: description)
+                //here now
+                
+                //Start here, imgName below causes a crash because it has slashes
+                //"12/2/2022, 12:25 AM-49.png", code on the extensions needs to be updated
+               // so imgName is not a path
+                self.dbmanager.record(pictureInfo: picInfo, emailAsChild: createSafeEmail(with: self.currentUserEmail!) , imgName: self.imageName)
+            }
+
         }
-        
-    //end here
-        
-        
-        
-        
         
     }//end of upload button tapped
     
@@ -94,7 +120,26 @@ extension PictureUploadViewController: UIImagePickerControllerDelegate, UINaviga
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true)
         self.uploadPicture.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-        print("Picked photo")
+       
     }
 }
   
+/**
+ let safeEmail = createSafeEmail(with: currentUserEmail!)
+ 
+ //generating random name for the image to be uploaded...to get the date part, separater is -
+ let currentDate = Date()
+ let imageName  =  currentDate.formatted()+"-"+String( Calendar.current.component(.second, from: currentDate))+".png"
+ let dbStorage = FirebaseStorage.Storage.storage().reference().child("Uploaded Images/\(safeEmail)")
+ 
+ dbStorage.child(imageName).putData(imageData) { _ , error in
+     guard error == nil else {
+         print("Failed to upload image")
+         return
+     }// end of guard
+     
+     
+     
+ }
+ 
+ */
