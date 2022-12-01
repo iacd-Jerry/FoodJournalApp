@@ -12,6 +12,7 @@
 		90047F722931F3670021C1D1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 90047F712931F3670021C1D1 /* FirebaseAuth */; };
 		90047F742931F3670021C1D1 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 90047F732931F3670021C1D1 /* FirebaseDatabase */; };
 		90047F762931F3670021C1D1 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 90047F752931F3670021C1D1 /* FirebaseDatabaseSwift */; };
+		901D391E2938ED2E00F6928D /* PictureUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901D391D2938ED2E00F6928D /* PictureUploadViewController.swift */; };
 		90470903292F74E300027EE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90470902292F74E300027EE5 /* AppDelegate.swift */; };
 		90470905292F74E300027EE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90470904292F74E300027EE5 /* SceneDelegate.swift */; };
 		90470907292F74E300027EE5 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90470906292F74E300027EE5 /* EntryViewController.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		901D391D2938ED2E00F6928D /* PictureUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureUploadViewController.swift; sourceTree = "<group>"; };
 		904708FF292F74E300027EE5 /* Food Journal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Food Journal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90470902292F74E300027EE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90470904292F74E300027EE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				90470916292F889200027EE5 /* LoginViewController.swift */,
 				90470918292F893A00027EE5 /* DashBoardViewController.swift */,
 				90470908292F74E300027EE5 /* Main.storyboard */,
+				901D391D2938ED2E00F6928D /* PictureUploadViewController.swift */,
 				905A802D29377FB700923996 /* FoodTableViewCell.swift */,
 				90ABDFE4292FC38B001CFC7E /* NavigationViewController.swift */,
 				9047091C292F9B6B00027EE5 /* RegisterViewController.swift */,
@@ -195,6 +198,7 @@
 				90470919292F893A00027EE5 /* DashBoardViewController.swift in Sources */,
 				90470917292F889200027EE5 /* LoginViewController.swift in Sources */,
 				9047091D292F9B6B00027EE5 /* RegisterViewController.swift in Sources */,
+				901D391E2938ED2E00F6928D /* PictureUploadViewController.swift in Sources */,
 				90470907292F74E300027EE5 /* EntryViewController.swift in Sources */,
 				90470903292F74E300027EE5 /* AppDelegate.swift in Sources */,
 				9047091B292F8AF700027EE5 /* extensions and methods.swift in Sources */,

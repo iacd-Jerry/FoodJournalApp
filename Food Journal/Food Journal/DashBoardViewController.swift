@@ -11,12 +11,11 @@ import FirebaseAuth
 class DashBoardViewController: UIViewController{
     @IBOutlet var tableView: UITableView!
     var myVideos: [Video] = [Video]()
-    var counter = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.backgroundColor = .link
+        
         navigationItem.hidesBackButton = true
         myVideos = loadVideos()
         
@@ -31,11 +30,6 @@ class DashBoardViewController: UIViewController{
             videoArr.append(Video(img: UIImage(named: "dice\(i).png")!, title: "Dice\(i)" ,description: "This is Dice\(i)"))
         }
         return videoArr
-    }
-    
-    
-    @IBAction func uploadButtonTapped(_ sender: UIBarButtonItem) {
-    
     }
     
 
