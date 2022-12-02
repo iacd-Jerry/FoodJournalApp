@@ -7,20 +7,42 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
 class DashBoardViewController: UIViewController{
     @IBOutlet var tableView: UITableView!
     var myVideos: [Video] = [Video]()
+    var myPictures = [PictureInfo] ()
+    var dbUploadPicRef = Database.database().reference()
+    var dbUploadPicRef2 = Database.database().reference()
+    let dbUserRef = Database.database().reference().child("Users")
+    var userSafeEmail = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.dataSource = self
+        tableView.delegate = self
         navigationItem.hidesBackButton = true
         myVideos = loadVideos()
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        //setting up and fetching information
+        userSafeEmail = createSafeEmail(with: FirebaseAuth.Auth.auth().currentUser!.email!)
+        
+        //print(userSafeEmail)
+        dbUploadPicRef.child("UploadedPictureData/\(userSafeEmail)").observe(.value) { snapshot in
+            guard snapshot.exists() else { print("Child not found"); return}
+            for child in snapshot.children{
+                let snap = child as! DataSnapshot
+                
+                self.dbUploadPicRef2.child(self.userSafeEmail).child(snap.key).observe(.value) { snapshot2 in
+                    //here trying to fix the Parent/ child hierachy
+                    print("Reached the second inner child")
+                }
+            }
+        }
+        
     }
     
     
