@@ -32,6 +32,18 @@ struct PictureInfo{
     var urlString: String
     var title: String
     var descriptionee: String
+    
+    init (urlString: String, title: String, descriptionee: String){
+        self.urlString = urlString
+        self.title = title
+        self.descriptionee = descriptionee
+    }
+    
+    init(){
+        urlString = ""
+        title = ""
+        descriptionee = ""
+    }
 }
 
 final class DBManager{
