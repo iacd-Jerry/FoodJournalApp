@@ -77,7 +77,7 @@ class PictureUploadViewController: UIViewController {
         let safeEmail = createSafeEmail(with: currentUserEmail!)
         
         //generating random name for the image to be uploaded...to get the date part, separater is -
-        self.imageName  =  self.currentDate.formatted()+"-"+String( Calendar.current.component(.second, from: self.currentDate))+".png"
+        self.imageName  =  createChild(with: self.currentDate.formatted()+"-"+String( Calendar.current.component(.second, from: self.currentDate))+".png")
        
         let dbStorage = FirebaseStorage.Storage.storage().reference().child("Uploaded Images/\(safeEmail)")
         
@@ -102,10 +102,12 @@ class PictureUploadViewController: UIViewController {
                 //Start here, imgName below causes a crash because it has slashes
                 //"12/2/2022, 12:25 AM-49.png", code on the extensions needs to be updated
                // so imgName is not a path
-                self.dbmanager.record(pictureInfo: picInfo, emailAsChild: createSafeEmail(with: self.currentUserEmail!) , imgName: self.imageName)
+                self.dbmanager.record(pictureInfo: picInfo, emailAsChild: createSafeEmail(with: self.currentUserEmail!) , imgName: createChild(with: self.imageName))
             }
 
         }
+        
+        dismiss(animated: true)
         
     }//end of upload button tapped
     

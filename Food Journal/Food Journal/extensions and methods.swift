@@ -111,3 +111,14 @@ func createSafeEmail(with email: String) ->String{
             newEmail = newEmail.replacingOccurrences(of: "%", with: "_")
             return newEmail
 }
+
+func createChild(with givenString: String) ->String{
+    
+        var newEmail = givenString
+            newEmail = newEmail.replacingOccurrences(of: ".", with: " ")
+            //newEmail = newEmail.replacingOccurrences(of: "-", with: "D")
+            //newEmail = newEmail.replacingOccurrences(of: ":", with: "C")
+            //newEmail = newEmail.replacingOccurrences(of: ",", with: "P")
+            newEmail = newEmail.replacingOccurrences(of: "/", with: " ")
+            return newEmail
+}
