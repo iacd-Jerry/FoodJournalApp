@@ -29,7 +29,6 @@ class RegisterViewController: UIViewController {
     }
     
     @objc private func didTapImage(){
-        print("Image tapped")
         let actionSheet  = UIAlertController(title: "Profile Photo", message: "Choose Profile Option", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         actionSheet.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: {[weak self] _ in
@@ -114,7 +113,7 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true)
         self.profilePicture.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-        print("Picked photo")
+        
     }
 }
     

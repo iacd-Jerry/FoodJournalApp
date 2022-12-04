@@ -18,8 +18,6 @@ class EntryViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       
-        print("View appeared")
         let auth = FirebaseAuth.Auth.auth()
         
         if  auth.currentUser == nil{

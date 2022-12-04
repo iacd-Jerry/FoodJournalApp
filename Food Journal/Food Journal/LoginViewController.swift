@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
             auth.signIn(withEmail: email, password: pass) { results, error in
                 guard let result = results , error == nil else
                 {
+                    print("failed to sign in user")
                     return
                 }
                 
@@ -56,6 +57,7 @@ class LoginViewController: UIViewController {
             }
         }
         performSegue(withIdentifier: "dashboard", sender: nil)
+        //navigationController?.pushViewController(DashBoardViewController(), animated: true)
     }
     
     

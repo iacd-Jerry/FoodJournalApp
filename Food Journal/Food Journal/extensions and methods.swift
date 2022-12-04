@@ -89,7 +89,6 @@ final class DBManager{
     
     
     func record(pictureInfo: PictureInfo , emailAsChild: String, imgName: String){
-        print("This is the child name",imgName)
         dbReference.child("UploadedPictureData").child(emailAsChild).child(imgName).setValue(
                          [
                         "UrlString": pictureInfo.urlString,

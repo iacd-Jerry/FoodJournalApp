@@ -13,10 +13,17 @@ class FoodTableViewCell: UITableViewCell {
     @IBOutlet var foodTitle: UILabel?
     
     
-    func setProp(video: Video){
-        foodTitle!.text = video.title
-        foodDescription!.text = video.foodDescription
-        foodImage!.image = video.img
+    func setProp(picInfo: PictureInfo){
+        foodTitle!.text = picInfo.title
+        foodDescription!.text = picInfo.descriptionee
+        
+            guard let url = URL(string: picInfo.urlString) else {print("Invalid URL");  return }
+            if let dataImage = try? Data(contentsOf: url){
+                self.foodImage!.image = UIImage(data: dataImage)
+            }else{
+                print("Error downloading image")
+                return
+        }
+        
     }
-    
 }
