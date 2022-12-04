@@ -12,7 +12,7 @@ import FirebaseStorage
 import CoreData
 
 class DashBoardViewController: UIViewController{
-    let context = ( UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var context = ( UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var myPicturesCoreData: [UploadedPhotos] = [UploadedPhotos]()
     var newImageAdded = false
     var newImage: PictureInfo = PictureInfo()
@@ -38,6 +38,8 @@ class DashBoardViewController: UIViewController{
             print("Logged in user email not found")
             return
         }
+        
+        //tableView.isUserInteractionEnabled = false
         
         userSafeEmail = createSafeEmail(with: loggedInUser!)
 
@@ -174,9 +176,12 @@ class DashBoardViewController: UIViewController{
     
     
     func delItem(_ item: UploadedPhotos){
+        print("Deleting one record in core data")
         context.delete(item)
         do{
             try context.save()
+            print("Success")
+            tableView.reloadData()
         }
         catch{
             print("Failed to delete core data")
@@ -188,6 +193,7 @@ class DashBoardViewController: UIViewController{
         let dele = NSBatchDeleteRequest(fetchRequest: UploadedPhotos.fetchRequest())
         do{
             try context.execute(dele)
+            print("succesful delete performed")
         }
         catch{
             print("Error trying to clear data")
@@ -214,12 +220,36 @@ extension DashBoardViewController: UITableViewDelegate, UITableViewDataSource{
         let currentCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FoodTableViewCell //getting cell from table view
         
         print("Current picture data is",picInf)
-        currentCell.setProp(picInfo: picInf) //setting the cell properties using the obbjec
+        DispatchQueue.main.async {
+            currentCell.setProp(picInfo: picInf) //setting the cell properties using the obbjec
+        }
         return currentCell
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("don't do shit😩")
+    //will neeed to open image in another view controller
+    }
+    
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            tableView.beginUpdates()
+            
+            // delete from core data then firebase
+            //let cell = tableView.cellForRow(at: indexPath) as! FoodTableViewCell
+            let UploadedPhoto = myPicturesCoreData[indexPath.row]
+            print("Before deleting",myPicturesCoreData.count)
+            delItem(UploadedPhoto)
+            myPicturesCoreData.remove(at: indexPath.row)
+            print("After deleting",myPicturesCoreData.count)
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            tableView.endUpdates()
+        }
     }
 }
