@@ -16,6 +16,7 @@ class DashBoardViewController: UIViewController{
     var myPicturesCoreData: [UploadedPhotos] = [UploadedPhotos]()
     var newImageAdded = false
     var newImage: PictureInfo = PictureInfo()
+    let dbManager = DBManager()
 
     @IBOutlet var tableView: UITableView!
     var singlePicObject = PictureInfo()
@@ -33,7 +34,12 @@ class DashBoardViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         //setting up and fetching information
-        loggedInUser = FirebaseAuth.Auth.auth().currentUser!.email!
+        print(dbManager.auth.currentUser?.email)
+        
+        let auth = FirebaseAuth.Auth.auth()
+        print(auth.currentUser?.email)
+        
+        loggedInUser = auth.currentUser!.email!
         if loggedInUser == nil{
             print("Logged in user email not found")
             return
@@ -70,45 +76,35 @@ class DashBoardViewController: UIViewController{
 
         
     } //end of view did load
-    
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-    }
-    
+
     
     init(uploadedInfo: PictureInfo ,_ newImage: Bool = false) {
         super.init(nibName: nil, bundle: nil)
         self.newImage = uploadedInfo
         self.newImageAdded = newImage
+        clearCoreData()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-       
     }
     
 
     func addImage(){
-        self.createItem(newImage)
+        self.createItem(newImage, "not Provided yet")
         newImageAdded = false
     }
     
     private func getTotalObjects(){
-        
         dbUploadPicRef.child("UploadedPictureData/\(userSafeEmail)").observe(.value) { snapshot in
             guard snapshot.exists() else {
                 print("Child not found");
                 return
-                
             }
 
             
             for child in snapshot.children{
                 let snap = child as! DataSnapshot
-                var objectNumber = 1
-                
                 
                  self.dbUploadPicRef2.child("UploadedPictureData/\(self.userSafeEmail)").child(snap.key).observe(.value) { snapshotFinal in
                     let lastSnap = snapshotFinal as DataSnapshot
@@ -128,15 +124,13 @@ class DashBoardViewController: UIViewController{
                              self.singlePicObject.urlString = va.value as! String
                              break
                          }
-                        
                      }
-                     self.createItem(self.singlePicObject)          //core data
+                     print("Key name for the below pictures is",snap.key)
+                     self.createItem(self.singlePicObject ,  snap.key)          //core data
                 }
             }
             
         }
-        
-    
     }  // end of fromTotalObjects()
     
     
@@ -145,9 +139,7 @@ class DashBoardViewController: UIViewController{
         //
         do{
            myPicturesCoreData = try context.fetch(UploadedPhotos.fetchRequest())
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+           self.tableView.reloadData()
         }
         catch{
             print("Failed to fetch on core data")
@@ -155,7 +147,7 @@ class DashBoardViewController: UIViewController{
         
     }
     
-    func createItem( _ picInput: PictureInfo){
+    func createItem( _ picInput: PictureInfo , _ childKey: String){
          //
         print("Trying to create core data")
         
@@ -163,6 +155,7 @@ class DashBoardViewController: UIViewController{
         newItem.title = picInput.title
         newItem.descript = picInput.descriptionee
         newItem.imageURL = picInput.urlString
+        newItem.childKey = childKey
         
         do{
             try context.save()
@@ -177,11 +170,10 @@ class DashBoardViewController: UIViewController{
     
     func delItem(_ item: UploadedPhotos){
         print("Deleting one record in core data")
-        context.delete(item)
+        context.delete(item as NSManagedObject)
         do{
             try context.save()
             print("Success")
-            tableView.reloadData()
         }
         catch{
             print("Failed to delete core data")
@@ -201,28 +193,36 @@ class DashBoardViewController: UIViewController{
     }
 
     
+    @IBAction func signOutUser(_ sender: Any) {
+        let alertSheet  = UIAlertController(title: "Confirm Logout", message: "Do you wish to logout", preferredStyle: .alert)
+        alertSheet.addAction(UIAlertAction(title: "Yes", style: .default, handler: {[weak self] _ in
+            _ = self?.dbManager.signedUser()
+            self?.navigationController?.popViewController(animated: true)
+        }))
+        
+        alertSheet.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        present(alertSheet, animated: true)
+        }
     
 }// end of class
 
 
 extension DashBoardViewController: UITableViewDelegate, UITableViewDataSource{
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         print("Number of rows will be",myPicturesCoreData.count)
+         print("Executing number of row in section")
          return myPicturesCoreData.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("The cell for row function is executing")
+        print("Executing cell for row at")
         
         let currentPic = myPicturesCoreData[indexPath.row] //object to be displayed on the table view
         let picInf = PictureInfo(urlString: currentPic.imageURL!, title: currentPic.title!, descriptionee: currentPic.descript!)
         let currentCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FoodTableViewCell //getting cell from table view
-        
-        print("Current picture data is",picInf)
-        DispatchQueue.main.async {
+
             currentCell.setProp(picInfo: picInf) //setting the cell properties using the obbjec
-        }
         return currentCell
     }
     
@@ -237,19 +237,22 @@ extension DashBoardViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            tableView.beginUpdates()
+            
             
             // delete from core data then firebase
             //let cell = tableView.cellForRow(at: indexPath) as! FoodTableViewCell
-            let UploadedPhoto = myPicturesCoreData[indexPath.row]
-            print("Before deleting",myPicturesCoreData.count)
-            delItem(UploadedPhoto)
-            myPicturesCoreData.remove(at: indexPath.row)
-            print("After deleting",myPicturesCoreData.count)
+            let Uploaded = myPicturesCoreData[indexPath.row]
+            print("The name of the image to be deleted is ",Uploaded.childKey!," with key",Uploaded.childKey!)
             
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            DispatchQueue.main.async { [self] in
+                tableView.beginUpdates()
+                dbManager.deleteChild(uploadedImage: Uploaded, emailAsChild: userSafeEmail)
+                delItem(Uploaded)
+                myPicturesCoreData.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+            }
             
-            tableView.endUpdates()
         }
     }
 }

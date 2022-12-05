@@ -7,32 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9C3950C1-9966-42CF-9B06-D597DAE113EC"
-            shouldBeEnabled = "No"
+            uuid = "48B7B24B-D55B-4B7A-BD5B-D781B93260EF"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Food Journal/DashBoardViewController.swift"
+            filePath = "Food Journal/extensions and methods.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "record(pictureInfo:emailAsChild:imgName:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2825B75B-38EF-4A84-AF07-CA86EAF77D93"
-            shouldBeEnabled = "No"
+            uuid = "9D85CFA3-69FC-461E-BDE6-AE634EB17D68"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Food Journal/DashBoardViewController.swift"
+            filePath = "Food Journal/extensions and methods.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "record(pictureInfo:emailAsChild:imgName:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

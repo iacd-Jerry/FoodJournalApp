@@ -21,43 +21,28 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
- 
-        let auth = FirebaseAuth.Auth.auth()
-        
-        if  auth.currentUser != nil{
-            //navigationController?.pushViewController(DashBoardViewController(), animated: true)
-    
-            performSegue(withIdentifier: "dashboard", sender: nil)
-        }
+
         
     }
     
     @IBAction func loginButtonTapped(_ senderB: Any) {
-        if FirebaseAuth.Auth.auth().currentUser == nil {
-            let auth = FirebaseAuth.Auth.auth()
-            
-            guard let email = emailAdd.text, !email.isEmpty , let pass = password.text, !pass.isEmpty
-                    else{
-                self.alertUserOfError()
+        print("Login button pressed")
+        if password.text == nil || emailAdd.text == nil{
+            print("Login fields are empty")
+            return
+        }
+        
+        let auth = FirebaseAuth.Auth.auth()
+        let email = emailAdd.text!
+        print("Trying to log in with email \(email) which has \(email.count) characteres")
+        auth.signIn(withEmail: email, password: password.text!) { _ , err in
+            if  err != nil{
+                print("Error message \(err?.localizedDescription)")
                 return
             }
-            
-            auth.signIn(withEmail: email, password: pass) { results, error in
-                guard let result = results , error == nil else
-                {
-                    print("failed to sign in user")
-                    return
-                }
-                
-               
-                
-                print("user signed in")
-    //            let vc = DashBoardViewController()
-    //            self.navigationController?.pushViewController(vc, animated: true)
-            }
+            self.performSegue(withIdentifier: "dashboard", sender: nil)
+            //maybe present next controller from here
         }
-        performSegue(withIdentifier: "dashboard", sender: nil)
-        //navigationController?.pushViewController(DashBoardViewController(), animated: true)
     }
     
     
@@ -65,4 +50,4 @@ class LoginViewController: UIViewController {
         print("Failed to log in")
     }
     
-}//End of body
+}  //End of body

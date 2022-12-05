@@ -18,7 +18,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profilePicture.contentMode = .scaleAspectFit
+        //profilePicture.contentMode = .scaleAspectFit
         profilePicture.layer.cornerRadius = 12
         profilePicture.layer.borderWidth = 1
         profilePicture.layer.borderColor = UIColor.systemGreen.cgColor

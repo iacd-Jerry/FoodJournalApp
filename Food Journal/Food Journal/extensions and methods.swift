@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 struct User{
     //academicsafe@gmail.com
@@ -47,7 +48,7 @@ struct PictureInfo{
 }
 
 final class DBManager{
-    
+    var auth = FirebaseAuth.Auth.auth()
     let dbReference = Database.database().reference()
     let dbStorageReferemce = Storage.storage().reference()
     
@@ -89,6 +90,8 @@ final class DBManager{
     
     
     func record(pictureInfo: PictureInfo , emailAsChild: String, imgName: String){
+        print("Child name to be used on database: \(imgName)")
+        
         dbReference.child("UploadedPictureData").child(emailAsChild).child(imgName).setValue(
                          [
                         "UrlString": pictureInfo.urlString,
@@ -97,6 +100,31 @@ final class DBManager{
                             ])
         
     }  //end of insert function
+    
+    func deleteChild( uploadedImage: UploadedPhotos, emailAsChild: String){
+        print("the child key is",uploadedImage.childKey!)
+        dbReference.child("UploadedPictureData").child(emailAsChild).child(uploadedImage.childKey!).setValue(nil)
+        dbStorageReferemce.child("Uploaded Images/\(emailAsChild)").child(uploadedImage.childKey!).delete { error in
+                guard error == nil else {print("Error while trying to delete photo from storage"); return}
+                print("Succesfully deleted child from storage")
+        }
+      
+    }  //end of delete function
+    
+    
+    func signedUser()-> Bool{
+        
+        var managed = false
+        do{
+            try auth.signOut()
+            managed = true
+        }
+        catch{
+            print("Failed to signout user")
+        }
+        return managed
+    }
+    
 }
 
 

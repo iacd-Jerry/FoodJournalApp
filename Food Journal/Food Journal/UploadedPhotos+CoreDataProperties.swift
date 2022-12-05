@@ -19,6 +19,7 @@ extension UploadedPhotos {
     @NSManaged public var imageURL: String?
     @NSManaged public var title: String?
     @NSManaged public var descript: String?
+    @NSManaged public var childKey: String?
 
 }
 
